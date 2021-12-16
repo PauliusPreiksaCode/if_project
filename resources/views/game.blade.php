@@ -3,8 +3,7 @@
     <head>
         <title>IF projektas</title>
         <meta charset="utf-8">
-
-        <!-- <link rel="stylesheet" href="/../css/gamePage.css"> -->
+        <link rel="stylesheet" href="/gamePage.css">
         <style>
 
             * { /* reset margins and paddings on all elements */

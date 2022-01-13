@@ -22,7 +22,7 @@ body::before {
 
 @keyframes bg-change {
     0%, 100% {
-        filter:hue-rotate(0deg);
+        filter:hue-rotate(0deg); /* kas cia parasyta? */
     }
     50% {
         filter:hue-rotate(-45deg);

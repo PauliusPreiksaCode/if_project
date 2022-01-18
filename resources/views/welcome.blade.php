@@ -8,7 +8,7 @@
     </head>
     <body>
         <div class="menu">
-            <h1>Meniu vieta</h1>
+            <a href="game.blade.php" class = "btn btn-info" role = "button">Pagrindinis</a>
         </div>
         <div class="background-video">
             <video autoplay muted loop>

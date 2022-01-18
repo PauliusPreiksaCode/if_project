@@ -25,10 +25,9 @@ body::before {
 }
 
 .menu{
-    width: auto;
+    width: 100%;
     height: 200px;
     text-align: center;
-    margin: auto;
     padding-top: 25px;
 }
 

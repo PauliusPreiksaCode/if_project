@@ -16,7 +16,7 @@
             <a href="http://127.0.0.1:8000/" class = "btn btn-info" role = "button">Apie</a>
             <div>
                 <button class = "btn btn-info" onclick="Dropdown()">Komanda <i class="fa fa-caret-down"></i></button>
-            <div class = "btn btn-info" id="drop">
+            <div id="drop">
                 <a href ="http://127.0.0.1:8000/">Arenijus</a>
                 <a href = "http://127.0.0.1:8000/">Neda</a>
                 <a href ="http://127.0.0.1:8000/">Paulius</a>

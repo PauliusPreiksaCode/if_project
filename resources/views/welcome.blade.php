@@ -9,7 +9,7 @@
     </head>
     <body>
         <div class="menu">
-            <a href="game.blade.php" class = "btn btn-info" role = "button">Pagri</a>
+            <a href="http://127.0.0.1:8000/" class = "btn btn-info" role = "button">Pagrindinis</a>
         </div>
         <div class="background-video">
             <video autoplay muted loop>

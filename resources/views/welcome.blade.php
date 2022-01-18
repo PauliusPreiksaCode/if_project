@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     </head>
     <body>
-        <div class="menu">
+        <div class="menu" style="width:100%;">
             <a href="http://127.0.0.1:8000/" class = "btn btn-info" role = "button">Pagrindinis</a>
             <a href="http://127.0.0.1:8000/game" class = "btn btn-info" role = "button">Zaidimas 1</a>
             <a href="http://127.0.0.1:8000/game" class = "btn btn-info" role = "button">Zaidimas 2</a>
@@ -18,7 +18,7 @@
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Komanda
                     <span class="caret"></span></button>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Paulius Preikša</a></li>
+                    <li><a href="http://127.0.0.1:8000/">Paulius Preikša</a></li>
                     <li><a href="#">Arenijus Juraška</a></li>
                     <li><a href="#">Neda Ramanauskaitė</a></li>
                 </ul>

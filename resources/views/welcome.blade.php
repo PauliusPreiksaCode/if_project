@@ -9,11 +9,13 @@
     </head>
     <body>
         <div class="menu">
+
             <a href="http://127.0.0.1:8000/" class = "btn btn-info" role = "button">Pagrindinis</a>
             <a href="http://127.0.0.1:8000/game" class = "btn btn-info" role = "button">Zaidimas 1</a>
             <a href="http://127.0.0.1:8000/game" class = "btn btn-info" role = "button">Zaidimas 2</a>
             <a href="http://127.0.0.1:8000/game" class = "btn btn-info" role = "button">Zaidimas 3</a>
             <a href="http://127.0.0.1:8000/" class = "btn btn-info" role = "button">Apie</a>
+            <div class="w3-show-inline-block">
             <div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Komanda
                     <span class="caret"></span></button>
@@ -22,6 +24,7 @@
                     <li><a href="#">Arenijus Juraška</a></li>
                     <li><a href="#">Neda Ramanauskaitė</a></li>
                 </ul>
+            </div>
             </div>
         </div>
         <div class="background-video">

@@ -29,7 +29,8 @@ body::before {
     height: 200px;
     text-align: center;
     padding-top: 25px;
-    align-content: space-evenly;
+    display: flex;
+    justify-content:space-evenly;
 }
 
 

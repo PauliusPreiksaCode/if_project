@@ -14,9 +14,17 @@
         <div class="menu">
             <div class="w3-show-inline-block">
             <a href="http://127.0.0.1:8000/" class = "btn btn-info" role = "button">Pagrindinis</a>
+            </div>
+            <div class="w3-show-inline-block">
             <a href="http://127.0.0.1:8000/game" class = "btn btn-info" role = "button">Zaidimas 1</a>
+            </div>
+            <div class="w3-show-inline-block">
             <a href="http://127.0.0.1:8000/game" class = "btn btn-info" role = "button">Zaidimas 2</a>
+            </div>
+            <div class="w3-show-inline-block">
             <a href="http://127.0.0.1:8000/game" class = "btn btn-info" role = "button">Zaidimas 3</a>
+            </div>
+            <div class="w3-show-inline-block">
             <a href="http://127.0.0.1:8000/" class = "btn btn-info" role = "button">Apie</a>
             </div>
             <div class="w3-show-inline-block">

@@ -21,7 +21,7 @@
             </div>
             <div class="w3-show-inline-block">
             <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Komanda
+                <button class="btn btn-primary dropdown-toggle" style="background-color: #5bc0de;border-color: #46b8da;" type="button" data-toggle="dropdown" >Komanda
                     <span class="caret"></span></button>
                 <ul class="dropdown-menu">
                     <li><a href="http://127.0.0.1:8000/">Paulius Preikša</a></li>
@@ -29,6 +29,9 @@
                     <li><a href="#">Neda Ramanauskaitė</a></li>
                 </ul>
             </div>
+            </div>
+            <div class="w3-show-inline-block">
+                <img src="https://w7.pngwing.com/pngs/495/472/png-transparent-computer-icons-user-profile-password-login-end-user-blue-computer-network-silhouette-thumbnail.png" alt="User">
             </div>
         </div>
         <div class="background-video">

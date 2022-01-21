@@ -12,24 +12,24 @@
     </head>
     <body>
         <div class="menu">
-            <div class="w3-show-inline-block">
+            <div class="w3-show-inline-block" style="padding-top: 30px">
             <a href="http://127.0.0.1:8000/" class = "btn btn-info" role = "button">Pagrindinis</a>
             </div>
-            <div class="w3-show-inline-block">
+            <div class="w3-show-inline-block" style="padding-top: 30px">
             <a href="http://127.0.0.1:8000/game" class = "btn btn-info" role = "button">Zaidimas 1</a>
             </div>
-            <div class="w3-show-inline-block">
+            <div class="w3-show-inline-block" style="padding-top: 30px">
             <a href="http://127.0.0.1:8000/game" class = "btn btn-info" role = "button">Zaidimas 2</a>
             </div>
-            <div class="w3-show-inline-block">
+            <div class="w3-show-inline-block" style="padding-top: 30px">
             <a href="http://127.0.0.1:8000/game" class = "btn btn-info" role = "button">Zaidimas 3</a>
             </div>
-            <div class="w3-show-inline-block">
+            <div class="w3-show-inline-block" style="padding-top: 30px">
             <a href="http://127.0.0.1:8000/apie" class = "btn btn-info" role = "button">Apie</a>
             </div>
-            <div class="w3-show-inline-block">
+            <div class="w3-show-inline-block" style="padding-top: 30px">
             <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" style="background-color: #5bc0de" type="button" data-toggle="dropdown" >Komanda
+                <button class="btn btn-primary dropdown-toggle" style="background-color: #5bc0de;" type="button" data-toggle="dropdown" >Komanda
                     <span class="caret"></span></button>
                 <ul class="dropdown-menu">
                     <li><a href="http://127.0.0.1:8000/">Paulius Preikša</a></li>

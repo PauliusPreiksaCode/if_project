@@ -2,6 +2,7 @@
     margin:0;
     padding:0;
     font-family: Arial, serif;
+    color: black;
 }
 
 body::before {
@@ -33,6 +34,9 @@ body::before {
     justify-content:space-evenly;
 }
 
+.background-video{
+    margin-bottom: 50px;
+}
 
 video{
     object-fit: cover;
@@ -65,27 +69,81 @@ video{
     color: white;
 }
 
-/*
- for menu buttons
-.btn-grad {background-image: linear-gradient(to right, #314755 0%, #26a0da  51%, #314755  100%)}
-.btn-grad {
-    margin: 10px;
-    padding: 15px 45px;
+.game-layout{
+    margin-bottom: 100px;
+}
+
+table{
+    width: 80%;
+    margin: auto;
     text-align: center;
+    padding: 20px;
+   /* table-layout: fixed; need to change some properties with th text and data-labels to not to move them while changing resolution */
+}
+
+.game-name{
     text-transform: uppercase;
+    text-align: center;
+    font-size: 50px;
+    padding: 30px 10px;
+}
+
+.game-photo{
+    height: 400px;
+    margin: 50px;
+    box-shadow: 0 0 20px #eee;
+}
+
+@media screen and (max-width: 1500px) {
+    table thead {
+        clip: rect(0 0 0 0);
+        overflow: hidden;
+        position: absolute;
+    }
+
+    table th, table td {
+        padding: 10px;
+        text-align: center;
+    }
+
+    table td {
+        display: block;
+    }
+
+    table td::before {
+        display: block;
+        content: attr(data-label);
+        margin: auto;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 50px;
+    }
+}
+
+.footer{
+    background-color: black;
+    height: 150px;
+}
+
+.btn{
+    font-size: 25px !important;
+}
+
+.btn-info, .btn-primary {
+    background-image: linear-gradient(to right, #314755 0%, #26a0da 51%, #314755 100%) !important
+}
+
+.btn-info, .btn-primary {
     transition: 0.5s;
     background-size: 200% auto;
     color: white;
     box-shadow: 0 0 20px #eee;
-    border-radius: 10px;
-    display: block;
 }
 
-.btn-grad:hover {
+.btn-info:hover, .btn-primary:hover {
     background-position: right center;
     color: #fff;
-    text-decoration: none;
 }
-       */
+
 
 

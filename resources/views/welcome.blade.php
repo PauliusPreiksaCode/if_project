@@ -50,5 +50,25 @@
                 <h1>IF Projektas</h1>
             </div>
         </div>
+        <div class="game-layout">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="game-name">Žaidimas 1</th>
+                        <th class="game-name">Žaidimas 2</th>
+                        <th class="game-name">Žaidimas 3</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Žaidimas 1"> <a href="http://127.0.0.1:8000/game"><img class="game-photo" src="/pictures-videos/blank.jpg"></a></td>
+                        <td data-label="Žaidimas 2"> <a href="http://127.0.0.1:8000/game"><img class="game-photo" src="/pictures-videos/blank.jpg"></a></td>
+                        <td data-label="Žaidimas 3"> <a href="http://127.0.0.1:8000/game"><img class="game-photo" src="/pictures-videos/blank.jpg"></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="footer">
+        </div>
     </body>
 </html>

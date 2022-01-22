@@ -3317,6 +3317,7 @@ fieldset[disabled] .btn-success.focus {
   background-color: #fff;
 }
 .btn-info {
+
   color: #fff;
   background-color: #5bc0de;
   border-color: #46b8da;
@@ -3328,6 +3329,7 @@ fieldset[disabled] .btn-success.focus {
   border-color: #1b6d85;
 }
 .btn-info:hover {
+
   color: #fff;
   background-color: #31b0d5;
   border-color: #269abc;

@@ -20,3 +20,6 @@ Route::get('/', function () {
 Route::get('/game', function () {
     return view('game');
 });
+Route::get('/apie', function () {
+    return view('apie');
+});

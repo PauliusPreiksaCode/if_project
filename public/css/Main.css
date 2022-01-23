@@ -38,6 +38,7 @@ body::before {
     margin-bottom: 50px;
 }
 
+
 video{
     object-fit: cover;
     position: absolute;
@@ -144,6 +145,16 @@ table{
     background-position: right center;
     color: #fff;
 }
+.heading
+{
+    color: white;
+    text-align: center;
+}
+p
+{
+    color: white;
+}
+
 
 
 

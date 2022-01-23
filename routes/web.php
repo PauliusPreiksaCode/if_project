@@ -23,3 +23,12 @@ Route::get('/game', function () {
 Route::get('/apie', function () {
     return view('apie');
 });
+Route::get('/p', function () {
+    return view('p');
+});
+Route::get('/n', function () {
+    return view('n');
+});
+Route::get('/a', function () {
+    return view('a');
+});

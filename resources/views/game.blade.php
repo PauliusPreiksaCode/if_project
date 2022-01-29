@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 </head>
 <body>
       <div class="menu">
@@ -60,10 +61,10 @@
                       <p>Reikės grafikos elementų.</p>
                   <p><br>Žaidimo temą galima keisti, čia tik viena iš sugalvotų.</p>
               </div>
-              <div class="game">
-
-              </div>
+              <canvas id="game" width="1280" height="720"></canvas>
+              <script src="/js/startuolis.js"></script>
           </div>
       <div class="footer"></div>
+
 </body>
-  </html>
+</html>

@@ -19,6 +19,10 @@
                       <p>Reikės grafikos elementų.</p>
                   <p><br>Žaidimo temą galima keisti, čia tik viena iš sugalvotų.</p>
               </div>
+              <div class="game">
+
+              </div>
           </div>
+      <div class="footer"></div>
       </body>
   </html>

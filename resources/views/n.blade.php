@@ -43,9 +43,14 @@
     </div>
 </div>
 <h1 class="heading">Neda Ramanauskaitė</h1>
+<div class="w3-show-inline-block" style="width: 75%">
 <ul class="description">
-    <li>info</li>
-    <li>info</li>
+    <li>Kauno Technologijų universiteto studentė</li>
+    <li>Kontaktai: nedram@ktu.edu</li>
 </ul>
+</div>
+<div class="w3-show-inline-block user">
+    <img src="/pictures-videos/IMG-2017-WA0004.jpeg" class="img-user" alt="img">
+</div>
 </body>
 </html>

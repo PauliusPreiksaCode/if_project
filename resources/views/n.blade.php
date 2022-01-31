@@ -50,7 +50,7 @@
 </ul>
 </div>
 <div class="w3-show-inline-block user">
-    <img src="/pictures-videos/IMG-2017-WA0004.jpeg" class="img-user" alt="img">
+    <img src="/pictures-videos/20210824_212628.jpg" class="img-user" alt="img">
 </div>
 </body>
 </html>

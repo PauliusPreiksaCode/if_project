@@ -43,6 +43,6 @@
     </div>
 </div>
 <h1 class="heading">Apie puslapį</h1>
-<p>Šiame puslapyje žaidimai yra skirti sužinoti daugiau apie informatiką arba pasikartoti jau žinomus dalykus.</p>
+<p class="apie">Šiame puslapyje žaidimai yra skirti sužinoti daugiau apie informatiką arba pasikartoti jau žinomus dalykus.</p>
 </body>
 </html>

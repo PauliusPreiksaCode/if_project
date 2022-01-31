@@ -48,15 +48,15 @@ var Corner = /*#__PURE__*/_createClass(function Corner(x, y) {
 });
 
 var Rectangle = /*#__PURE__*/_createClass( //
-function Rectangle(x, y, width, height) {
+function Rectangle(name, x, y, width, height) {
   var _this = this;
 
-  var color = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : "black";
-  var lineWidth = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 1;
-  var text = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : "";
-  var textColor = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : "white";
-  var fontSize = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : 1;
-  var button = arguments.length > 9 && arguments[9] !== undefined ? arguments[9] : false;
+  var color = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : "black";
+  var lineWidth = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 1;
+  var text = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : "";
+  var textColor = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : "white";
+  var fontSize = arguments.length > 9 && arguments[9] !== undefined ? arguments[9] : 1;
+  var button = arguments.length > 10 && arguments[10] !== undefined ? arguments[10] : false;
 
   _classCallCheck(this, Rectangle);
 
@@ -99,13 +99,17 @@ function Rectangle(x, y, width, height) {
   this.mouseDown = function (event) {
     var x = event.x - canvas.offsetLeft + window.pageXOffset;
     var y = event.y - canvas.offsetTop + window.pageYOffset;
-    if (x > _this.x - _this.width / 2 && x < _this.x + _this.width / 2 && y > _this.y - _this.height / 2 && y < _this.y + _this.height / 2) _this.down = true;
+
+    if (x > _this.x - _this.width / 2 && x < _this.x + _this.width / 2 && y > _this.y - _this.height / 2 && y < _this.y + _this.height / 2) {
+      _this.down = true;
+    }
   };
 
   this.mouseUp = function (event) {
     _this.down = false;
   };
 
+  this.name = name;
   this.x = x;
   this.y = y;
   this.height = height;
@@ -117,7 +121,9 @@ function Rectangle(x, y, width, height) {
   this.fontSize = fontSize;
   this.button = button; // for button
 
-  if (this.button) canvas.addEventListener("mousedown", this.mouseDown, false);
+  if (this.button) {
+    canvas.addEventListener("mousedown", this.mouseDown, false);
+  }
 });
 
 var Circle = /*#__PURE__*/_createClass(function Circle(x, y, radius) {
@@ -151,7 +157,7 @@ var Circle = /*#__PURE__*/_createClass(function Circle(x, y, radius) {
 
     if (Math.pow(x, 2) + Math.pow(y, 2) < Math.pow(_this2.radius, 2)) {
       _this2.down = true;
-      clear = true;
+      startGame = true;
     }
   };
 
@@ -161,7 +167,10 @@ var Circle = /*#__PURE__*/_createClass(function Circle(x, y, radius) {
   this.lineWidth = lineWidth;
   this.color = color;
   this.button = button;
-  if (this.button) canvas.addEventListener("mousedown", this.mouseDown, false);
+
+  if (this.button) {
+    canvas.addEventListener("mousedown", this.mouseDown, false);
+  }
 });
 
 var Triangle = /*#__PURE__*/_createClass(function Triangle(x, y, size) {
@@ -204,8 +213,35 @@ var Triangle = /*#__PURE__*/_createClass(function Triangle(x, y, size) {
   this.corners.push(new Corner(size * 1.3, 0));
 });
 
-var shapes = new Array();
-var clear = false;
+function mouseOver(event) {
+  var x = event.x - canvas.offsetLeft + window.pageXOffset;
+  var y = event.y - canvas.offsetTop + window.pageYOffset;
+
+  for (var i = 0; i < MainShapes.length; i++) {
+    var shape = MainShapes[i];
+
+    if (x > shape.x - shape.width / 2 && x < shape.x + shape.width / 2 && y > shape.y - shape.height / 2 && y < shape.y + shape.height / 2) {
+      console.log(shape.name);
+      mouseOverChoice = true;
+      shapeInfo = shape.name;
+    }
+  }
+}
+
+function beenClicked(shapeName) {
+  for (var i = 0; i < MainShapes.length; i++) {
+    if (MainShapes[i].name == shapeName && MainShapes[i].down == true) return true;
+  }
+
+  return false;
+}
+
+var StartingShapes = new Array();
+var MainShapes = new Array();
+var GameEndShapes = new Array();
+var startGame = false;
+var mouseOverChoice = false;
+var shapeInfo = "";
 
 function gameLoop() {
   requestAnimationFrame(gameLoop);
@@ -213,11 +249,34 @@ function gameLoop() {
   ctx.fillRect(0, 0, 1280, 720);
   var shape;
 
-  if (!clear) {
-    for (var i = 0; i < shapes.length; i++) {
-      shape = shapes[i];
+  if (!startGame) {
+    for (var i = 0; i < StartingShapes.length; i++) {
+      shape = StartingShapes[i];
       shape.draw();
     }
+  }
+
+  if (startGame) {
+    canvas.addEventListener("mousemove", mouseOver, false);
+    var count = 0;
+
+    for (var i = 0; i < MainShapes.length; i++) {
+      shape = MainShapes[i];
+      if (shape.down) count++;
+      shape.draw();
+
+      if (mouseOverChoice && beenClicked(shapeInfo) == false) {
+        var rectangle = new Rectangle("", 640, 675, 1100, 60, "black", 2, shapeInfo, "black", 32);
+        rectangle.draw();
+      }
+
+      if (count == 6) {
+        GameEndShapes[0].draw();
+        GameEndShapes[1].draw();
+      }
+    }
+
+    count = 0;
   }
 }
 
@@ -225,9 +284,17 @@ window.onload = function () {
   canvas = document.getElementById("game"); // @ts-ignore
 
   ctx = canvas.getContext("2d");
-  shapes.push(new Circle(640, 400, 200, "blue", 6, true));
-  shapes.push(new Triangle(640, 400, 100, "white", 3));
-  shapes.push(new Rectangle(640, 100, 500, 140, "white", 1, "Startuolis", "black", 100));
+  StartingShapes.push(new Circle(640, 400, 200, "blue", 6, true));
+  StartingShapes.push(new Triangle(640, 400, 100, "white", 3));
+  StartingShapes.push(new Rectangle("", 640, 100, 500, 140, "white", 1, "Startuolis", "black", 100));
+  MainShapes.push(new Rectangle("1", 140, 570, 100, 100, "black", 3, "", "white", 1, true));
+  MainShapes.push(new Rectangle("2", 340, 570, 100, 100, "black", 3, "", "white", 1, true));
+  MainShapes.push(new Rectangle("3", 540, 570, 100, 100, "black", 3, "", "white", 1, true));
+  MainShapes.push(new Rectangle("4", 740, 570, 100, 100, "black", 3, "", "white", 1, true));
+  MainShapes.push(new Rectangle("5", 940, 570, 100, 100, "black", 3, "", "white", 1, true));
+  MainShapes.push(new Rectangle("6", 1140, 570, 100, 100, "black", 3, "", "white", 1, true));
+  GameEndShapes.push(new Rectangle("", 640, 50, 400, 100, "white", 1, "Žaidimo pabaiga", "black", 64));
+  GameEndShapes.push(new Rectangle("", 640, 100, 400, 50, "white", 1, "Jūsų surinkti taškai: XXXX", "black", 32));
   gameLoop();
 };
 })();

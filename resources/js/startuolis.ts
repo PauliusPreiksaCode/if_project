@@ -1,4 +1,5 @@
 import {List} from "postcss/lib/list";
+import * as Console from "console";
 
 var canvas: HTMLCanvasElement;
 var ctx: CanvasRenderingContext2D;
@@ -27,6 +28,7 @@ class Corner
 
 class Rectangle implements Shape
 {
+    public name: string;
     public x: number;
     public y: number;
     public height: number;
@@ -40,8 +42,9 @@ class Rectangle implements Shape
     // for button
     public down: boolean = false;
     //
-    constructor(x: number, y: number, width:number, height:number, color: string = "black", lineWidth: number = 1, text: string = "", textColor: string = "white", fontSize:number = 1, button: boolean = false)
+    constructor(name:string ,x: number, y: number, width:number, height:number, color: string = "black", lineWidth: number = 1, text: string = "", textColor: string = "white", fontSize:number = 1, button: boolean = false)
     {
+        this.name = name;
         this.x = x;
         this.y = y;
         this.height = height;
@@ -53,8 +56,9 @@ class Rectangle implements Shape
         this.fontSize = fontSize;
         this.button = button;
         // for button
-        if(this.button)
+        if(this.button){
             canvas.addEventListener("mousedown", this.mouseDown, false);
+        }
     }
 
 
@@ -91,8 +95,9 @@ class Rectangle implements Shape
         var x: number = event.x - canvas.offsetLeft + window.pageXOffset;
         var y: number = event.y - canvas.offsetTop + window.pageYOffset;
 
-        if (x > this.x - this.width / 2 && x < this.x + this.width / 2 && y > this.y - this.height / 2 && y < this.y + this.height / 2)
+        if (x > this.x - this.width / 2 && x < this.x + this.width / 2 && y > this.y - this.height / 2 && y < this.y + this.height / 2){
             this.down = true;
+        }
     }
 
     public mouseUp = (event: MouseEvent): void => {
@@ -120,8 +125,10 @@ class Circle implements Shape
         this.color = color;
         this.button = button;
 
-        if(this.button)
+        if(this.button){
             canvas.addEventListener("mousedown", this.mouseDown, false);
+        }
+
     }
 
     public draw = (): void =>{
@@ -145,7 +152,7 @@ class Circle implements Shape
         if(Math.pow(x,2) + Math.pow(y, 2) < Math.pow(this.radius, 2))
         {
             this.down = true;
-            clear = true;
+            startGame = true;
         }
     }
 }
@@ -192,11 +199,34 @@ class Triangle implements Shape
     }
 }
 
+function mouseOver(event: MouseEvent): void{
+    var x: number = event.x - canvas.offsetLeft + window.pageXOffset;
+    var y: number = event.y - canvas.offsetTop + window.pageYOffset;
+    for(var i: number = 0; i < MainShapes.length; i++){
+        var shape: Rectangle = (MainShapes[i] as Rectangle);
+        if (x > shape.x - shape.width / 2 && x < shape.x + shape.width / 2 && y > shape.y - shape.height / 2 && y < shape.y + shape.height / 2) {
+            console.log(shape.name);
+            mouseOverChoice = true;
+            shapeInfo = shape.name;
+        }
+    }
+}
+
+function beenClicked(shapeName: string): boolean{
+    for(var i: number = 0; i < MainShapes.length; i++)
+        if((MainShapes[i] as Rectangle).name == shapeName && (MainShapes[i] as Rectangle).down == true)
+            return true;
+    return false;
+}
 
 
 
-var shapes: Array<Shape> = new Array<Shape>();
-var clear: boolean = false;
+var StartingShapes: Array<Shape> = new Array<Shape>();
+var MainShapes: Array<Shape> = new Array<Shape>();
+var GameEndShapes: Array<Shape> = new Array<Shape>();
+var startGame: boolean = false;
+var mouseOverChoice: boolean = false;
+var shapeInfo: string = "";
 
 function gameLoop()
 {
@@ -205,12 +235,36 @@ function gameLoop()
     ctx.fillRect(0, 0, 1280, 720);
 
     var shape: Shape;
-    if(!clear)
+    if(!startGame)
     {
-        for (var i: number = 0; i < shapes.length; i++) {
-            shape = shapes[i];
+        for (var i: number = 0; i < StartingShapes.length; i++) {
+            shape = StartingShapes[i];
             shape.draw();
         }
+    }
+
+    if(startGame)
+    {
+        canvas.addEventListener("mousemove", mouseOver, false);
+        var count: number = 0;
+        for (var i: number = 0; i < MainShapes.length; i++) {
+            shape = MainShapes[i];
+
+            if((shape as Rectangle).down)
+                count++;
+            shape.draw();
+
+            if(mouseOverChoice && beenClicked(shapeInfo) == false){
+                var rectangle: Rectangle = new Rectangle("", 640, 675, 1100, 60, "black", 2, shapeInfo, "black", 32);
+                rectangle.draw();
+            }
+
+            if(count == 6){
+                GameEndShapes[0].draw();
+                GameEndShapes[1].draw();
+            }
+        }
+        count = 0;
     }
 }
 
@@ -219,8 +273,19 @@ window.onload = () => {
 
     // @ts-ignore
     ctx = canvas.getContext("2d");
-    shapes.push(new Circle(640, 400, 200, "blue", 6, true));
-    shapes.push(new Triangle(640, 400, 100, "white", 3));
-    shapes.push(new Rectangle(640, 100, 500, 140, "white", 1, "Startuolis", "black", 100));
+    StartingShapes.push(new Circle(640, 400, 200, "blue", 6, true));
+    StartingShapes.push(new Triangle(640, 400, 100, "white", 3));
+    StartingShapes.push(new Rectangle("", 640, 100, 500, 140, "white", 1, "Startuolis", "black", 100));
+
+    MainShapes.push(new Rectangle("1", 140, 570, 100, 100, "black", 3, "", "white", 1, true));
+    MainShapes.push(new Rectangle("2", 340, 570, 100, 100, "black", 3, "", "white", 1, true));
+    MainShapes.push(new Rectangle("3", 540, 570, 100, 100, "black", 3, "", "white", 1, true));
+    MainShapes.push(new Rectangle("4", 740, 570, 100, 100, "black", 3, "", "white", 1, true));
+    MainShapes.push(new Rectangle("5", 940, 570, 100, 100, "black", 3, "", "white", 1, true));
+    MainShapes.push(new Rectangle("6", 1140, 570, 100, 100, "black", 3, "", "white", 1, true));
+
+    GameEndShapes.push(new Rectangle("", 640, 50, 400, 100, "white", 1, "Žaidimo pabaiga", "black", 64));
+    GameEndShapes.push(new Rectangle("", 640, 100, 400, 50, "white", 1, "Jūsų surinkti taškai: XXXX", "black", 32));
+
     gameLoop();
 }

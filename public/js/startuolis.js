@@ -60,9 +60,8 @@ function Rectangle(name, x, y, width, height) {
 
   _classCallCheck(this, Rectangle);
 
-  this.button = false; // for button
-
-  this.down = false;
+  this.button = false;
+  this.down = false; //if rectangle is pressed down
 
   this.drawText = function () {
     ctx.save();
@@ -103,10 +102,6 @@ function Rectangle(name, x, y, width, height) {
     if (x > _this.x - _this.width / 2 && x < _this.x + _this.width / 2 && y > _this.y - _this.height / 2 && y < _this.y + _this.height / 2) {
       _this.down = true;
     }
-  };
-
-  this.mouseUp = function (event) {
-    _this.down = false;
   };
 
   this.name = name;
@@ -167,10 +162,7 @@ var Circle = /*#__PURE__*/_createClass(function Circle(x, y, radius) {
   this.lineWidth = lineWidth;
   this.color = color;
   this.button = button;
-
-  if (this.button) {
-    canvas.addEventListener("mousedown", this.mouseDown, false);
-  }
+  if (this.button) canvas.addEventListener("mousedown", this.mouseDown, false);
 });
 
 var Triangle = /*#__PURE__*/_createClass(function Triangle(x, y, size) {
@@ -230,7 +222,7 @@ function mouseOver(event) {
 
 function beenClicked(shapeName) {
   for (var i = 0; i < MainShapes.length; i++) {
-    if (MainShapes[i].name == shapeName && MainShapes[i].down == true) return true;
+    if (MainShapes[i].name == shapeName && MainShapes[i].down) return true;
   }
 
   return false;
@@ -242,14 +234,13 @@ var GameEndShapes = new Array();
 var startGame = false;
 var mouseOverChoice = false;
 var shapeInfo = "";
-var canvasHeight;
-var canvasWidth;
 var multX;
+var multY;
 
 function gameLoop() {
   requestAnimationFrame(gameLoop);
   ctx.fillStyle = "white";
-  ctx.fillRect(0, 0, 1280, 720);
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
   var shape;
 
   if (!startGame) {
@@ -268,8 +259,8 @@ function gameLoop() {
       if (shape.down) count++;
       shape.draw();
 
-      if (mouseOverChoice && beenClicked(shapeInfo) == false) {
-        var rectangle = new Rectangle("", 640 * multX, 675, 1100 * multX, 60, "black", 2, shapeInfo, "black", 32);
+      if (mouseOverChoice && !beenClicked(shapeInfo)) {
+        var rectangle = new Rectangle("", 640 * multX, 675 * multY, 1100 * multX, 60 * multY, "black", 2, shapeInfo, "black", 32);
         rectangle.draw();
       }
 
@@ -285,25 +276,25 @@ function gameLoop() {
 
 window.onload = function () {
   canvas = document.getElementById("game");
-  console.log(canvas.width + "x" + canvas.height);
-  console.log(window.innerWidth + "x" + window.innerHeight);
-  console.log(window.innerWidth * 0.8 + "x" + window.innerHeight);
-  canvas.width = window.innerWidth * 0.8;
-  canvas.height = window.innerHeight;
-  multX = canvas.width / 1280; // @ts-ignore
+  canvas.width = window.innerWidth * 0.8; // 80% of the window
+
+  canvas.height = canvas.width * 9 / 16; // 16:9 aspect ratio
+
+  multX = canvas.width / 1280;
+  multY = canvas.height / 720; // @ts-ignore
 
   ctx = canvas.getContext("2d");
-  StartingShapes.push(new Circle(640 * multX, 400, 200 * multX, "blue", 6, true));
-  StartingShapes.push(new Triangle(640 * multX, 400, 100 * multX, "white", 3));
-  StartingShapes.push(new Rectangle("", 640 * multX, 100, 500 * multX, 140, "white", 1, "Startuolis", "black", 100));
-  MainShapes.push(new Rectangle("1", 140 * multX, 570, 100 * multX, 100 * multX, "black", 3, "", "white", 1, true));
-  MainShapes.push(new Rectangle("2", 340 * multX, 570, 100 * multX, 100 * multX, "black", 3, "", "white", 1, true));
-  MainShapes.push(new Rectangle("3", 540 * multX, 570, 100 * multX, 100 * multX, "black", 3, "", "white", 1, true));
-  MainShapes.push(new Rectangle("4", 740 * multX, 570, 100 * multX, 100 * multX, "black", 3, "", "white", 1, true));
-  MainShapes.push(new Rectangle("5", 940 * multX, 570, 100 * multX, 100 * multX, "black", 3, "", "white", 1, true));
-  MainShapes.push(new Rectangle("6", 1140 * multX, 570, 100 * multX, 100 * multX, "black", 3, "", "white", 1, true));
-  GameEndShapes.push(new Rectangle("", 640 * multX, 50, 1000 * multX, 150 * multX, "white", 0, "Žaidimo pabaiga", "black", 64));
-  GameEndShapes.push(new Rectangle("", 640 * multX, 100, 1000 * multX, 38 * multX, "white", 1, "Jūsų surinkti taškai: XXXX", "black", 32));
+  StartingShapes.push(new Circle(640 * multX, 400 * multY, 200 * multX, "blue", 6, true));
+  StartingShapes.push(new Triangle(640 * multX, 400 * multY, 100 * multX, "white", 3));
+  StartingShapes.push(new Rectangle("", 640 * multX, 100 * multY, 0, 0, "white", 1, "Startuolis", "black", 100));
+  MainShapes.push(new Rectangle("1", 140 * multX, 570 * multY, 100 * multX, 100 * multY, "black", 3, "", "white", 1, true));
+  MainShapes.push(new Rectangle("2", 340 * multX, 570 * multY, 100 * multX, 100 * multY, "black", 3, "", "white", 1, true));
+  MainShapes.push(new Rectangle("3", 540 * multX, 570 * multY, 100 * multX, 100 * multY, "black", 3, "", "white", 1, true));
+  MainShapes.push(new Rectangle("4", 740 * multX, 570 * multY, 100 * multX, 100 * multY, "black", 3, "", "white", 1, true));
+  MainShapes.push(new Rectangle("5", 940 * multX, 570 * multY, 100 * multX, 100 * multY, "black", 3, "", "white", 1, true));
+  MainShapes.push(new Rectangle("6", 1140 * multX, 570 * multY, 100 * multX, 100 * multY, "black", 3, "", "white", 1, true));
+  GameEndShapes.push(new Rectangle("", 640 * multX, 50 * multY, 0, 0, "white", 0, "Žaidimo pabaiga", "black", 64));
+  GameEndShapes.push(new Rectangle("", 640 * multX, 100 * multY, 0, 0, "white", 0, "Jūsų surinkti taškai: XXXX", "black", 32));
   gameLoop();
 };
 })();

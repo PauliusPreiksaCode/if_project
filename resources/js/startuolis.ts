@@ -39,8 +39,7 @@ class Rectangle implements Shape
     public fontSize: number;
     public textColor: string;
     public button:boolean = false;
-    // for button
-    public down: boolean = false;
+    public down: boolean = false; //if rectangle is pressed down
     //
     constructor(name:string ,x: number, y: number, width:number, height:number, color: string = "black", lineWidth: number = 1, text: string = "", textColor: string = "white", fontSize:number = 1, button: boolean = false)
     {
@@ -60,7 +59,6 @@ class Rectangle implements Shape
             canvas.addEventListener("mousedown", this.mouseDown, false);
         }
     }
-
 
     public drawText = (): void => {
         ctx.save();
@@ -99,10 +97,6 @@ class Rectangle implements Shape
             this.down = true;
         }
     }
-
-    public mouseUp = (event: MouseEvent): void => {
-        this.down = false;
-    }
 }
 
 class Circle implements Shape
@@ -115,7 +109,6 @@ class Circle implements Shape
     public button: boolean;
     public down: boolean = false;
 
-
     constructor(x: number, y: number, radius:number, color: string = "black", lineWidth: number = 1, button: boolean = false)
     {
         this.x = x;
@@ -125,10 +118,8 @@ class Circle implements Shape
         this.color = color;
         this.button = button;
 
-        if(this.button){
+        if(this.button)
             canvas.addEventListener("mousedown", this.mouseDown, false);
-        }
-
     }
 
     public draw = (): void =>{
@@ -214,7 +205,7 @@ function mouseOver(event: MouseEvent): void{
 
 function beenClicked(shapeName: string): boolean{
     for(var i: number = 0; i < MainShapes.length; i++)
-        if((MainShapes[i] as Rectangle).name == shapeName && (MainShapes[i] as Rectangle).down == true)
+        if((MainShapes[i] as Rectangle).name == shapeName && (MainShapes[i] as Rectangle).down)
             return true;
     return false;
 }
@@ -227,16 +218,15 @@ var GameEndShapes: Array<Shape> = new Array<Shape>();
 var startGame: boolean = false;
 var mouseOverChoice: boolean = false;
 var shapeInfo: string = "";
-var canvasHeight: number;
-var canvasWidth: number;
 var multX: number;
+var multY: number;
 
 function gameLoop()
 {
     requestAnimationFrame(gameLoop);
 
     ctx.fillStyle = "white";
-    ctx.fillRect(0, 0, 1280, 720);
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     var shape: Shape;
     if(!startGame)
@@ -258,8 +248,8 @@ function gameLoop()
                 count++;
             shape.draw();
 
-            if(mouseOverChoice && beenClicked(shapeInfo) == false){
-                var rectangle: Rectangle = new Rectangle("", 640 * multX, 675, 1100 * multX, 60, "black", 2, shapeInfo, "black", 32);
+            if(mouseOverChoice && !beenClicked(shapeInfo)){
+                var rectangle: Rectangle = new Rectangle("", 640 * multX, 675 * multY, 1100 * multX, 60 * multY, "black", 2, shapeInfo, "black", 32);
                 rectangle.draw();
             }
 
@@ -275,32 +265,28 @@ function gameLoop()
 window.onload = () => {
     canvas = <HTMLCanvasElement>document.getElementById("game");
 
-    console.log(canvas.width + "x" + canvas.height);
-    console.log(window.innerWidth + "x" + window.innerHeight);
-
-    console.log(window.innerWidth * 0.8 + "x" + window.innerHeight);
-    canvas.width = window.innerWidth * 0.8;
-    canvas.height=window.innerHeight;
+    canvas.width = window.innerWidth * 0.8; // 80% of the window
+    canvas.height = canvas.width * 9/16; // 16:9 aspect ratio
 
     multX = canvas.width/1280;
-
+    multY = canvas.height/720;
 
     // @ts-ignore
     ctx = canvas.getContext("2d");
 
-    StartingShapes.push(new Circle(640 * multX, 400, 200 * multX, "blue", 6, true));
-    StartingShapes.push(new Triangle(640 * multX, 400, 100 * multX, "white", 3));
-    StartingShapes.push(new Rectangle("", 640 * multX, 100, 500 * multX, 140, "white", 1, "Startuolis", "black", 100));
+    StartingShapes.push(new Circle(640 * multX, 400 * multY, 200 * multX, "blue", 6, true));
+    StartingShapes.push(new Triangle(640 * multX, 400 * multY, 100 * multX, "white", 3));
+    StartingShapes.push(new Rectangle("", 640 * multX, 100 * multY, 0, 0, "white", 1, "Startuolis", "black", 100));
 
-    MainShapes.push(new Rectangle("1", 140 * multX, 570, 100 * multX, 100 * multX, "black", 3, "", "white", 1, true));
-    MainShapes.push(new Rectangle("2", 340 * multX, 570, 100 * multX, 100 * multX, "black", 3, "", "white", 1, true));
-    MainShapes.push(new Rectangle("3", 540 * multX, 570, 100 * multX, 100 * multX, "black", 3, "", "white", 1, true));
-    MainShapes.push(new Rectangle("4", 740 * multX, 570, 100 * multX, 100 * multX, "black", 3, "", "white", 1, true));
-    MainShapes.push(new Rectangle("5", 940 * multX, 570, 100 * multX, 100 * multX, "black", 3, "", "white", 1, true));
-    MainShapes.push(new Rectangle("6", 1140 * multX, 570, 100 * multX, 100 * multX, "black", 3, "", "white", 1, true));
+    MainShapes.push(new Rectangle("1", 140 * multX, 570 * multY, 100 * multX, 100 * multY, "black", 3, "", "white", 1, true));
+    MainShapes.push(new Rectangle("2", 340 * multX, 570 * multY, 100 * multX, 100 * multY, "black", 3, "", "white", 1, true));
+    MainShapes.push(new Rectangle("3", 540 * multX, 570 * multY, 100 * multX, 100 * multY, "black", 3, "", "white", 1, true));
+    MainShapes.push(new Rectangle("4", 740 * multX, 570 * multY, 100 * multX, 100 * multY, "black", 3, "", "white", 1, true));
+    MainShapes.push(new Rectangle("5", 940 * multX, 570 * multY, 100 * multX, 100 * multY, "black", 3, "", "white", 1, true));
+    MainShapes.push(new Rectangle("6", 1140 * multX, 570 * multY, 100 * multX, 100 * multY, "black", 3, "", "white", 1, true));
 
-    GameEndShapes.push(new Rectangle("", 640 * multX, 50, 1000 * multX, 150 * multX, "white", 0, "Žaidimo pabaiga", "black", 64));
-    GameEndShapes.push(new Rectangle("", 640 * multX, 100, 1000 * multX, 38 * multX, "white", 1, "Jūsų surinkti taškai: XXXX", "black", 32));
+    GameEndShapes.push(new Rectangle("", 640 * multX, 50 * multY, 0, 0, "white", 0, "Žaidimo pabaiga", "black", 64));
+    GameEndShapes.push(new Rectangle("", 640 * multX, 100 * multY, 0, 0, "white", 0, "Jūsų surinkti taškai: XXXX", "black", 32));
 
     gameLoop();
 }

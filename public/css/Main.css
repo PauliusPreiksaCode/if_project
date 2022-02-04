@@ -123,6 +123,7 @@ table{
 .footer{
     background-color: black;
     height: 150px;
+    width: 100%;
 }
 
 .btn{

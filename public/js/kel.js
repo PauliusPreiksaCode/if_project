@@ -351,12 +351,12 @@ window.onload = function () {
     //@ ts-ignore
     ctx = canvas.getContext("2d");
     draw_array.push(new Button(canvas.width / 2, canvas.height / 4, canvas.width / 5 * 3, canvas.height / 7 * 2, "Naujas žaidimas", 45, "red", "white"));
-    draw_array.push(new Button(canvas.width / 2, canvas.height / 4 * 3, canvas.width / 5 * 3, canvas.height / 7 * 2, "Testi", 50, "blue", "white"));
-    menuButtons.push(new Button(canvas.width / 16 * 15, canvas.height / 14, canvas.width / 12, canvas.height / 14, "Užrašai", 25, "blue", "black"));
-    menuButtons.push(new Button(canvas.width / 16 * 15, canvas.height / 6.2, canvas.width / 12, canvas.height / 14, "Daiktai", 25, "blue", "black"));
-    menuButtons.push(new Button(canvas.width / 16 * 15, canvas.height / 4, canvas.width / 12, canvas.height / 14, "Žemėlapis", 20, "blue", "black"));
-    menuButtons.push(new Button(canvas.width / 16 * 15, canvas.height / 2.98, canvas.width / 12, canvas.height / 14, "Išeiti", 25, "blue", "black"));
-    xb.push(new Button(canvas.width / 4 * 3.45, canvas.height / 20, canvas.height / 14, canvas.height / 14, "x", 50, "red", "white"));
+    draw_array.push(new Button(canvas.width / 2, canvas.height / 4 * 3, canvas.width / 5 * 3, canvas.height / 7 * 2, "Tęsti", 50, "blue", "white"));
+    menuButtons.push(new Button(canvas.width / 16 * 15, canvas.height / 14, canvas.width / 12, canvas.height / 14, "Užrašai", canvas.height / 30, "blue", "black"));
+    menuButtons.push(new Button(canvas.width / 16 * 15, canvas.height / 6.2, canvas.width / 12, canvas.height / 14, "Daiktai", canvas.height / 30, "blue", "black"));
+    menuButtons.push(new Button(canvas.width / 16 * 15, canvas.height / 4, canvas.width / 12, canvas.height / 14, "Žemėlapis", canvas.height / 40, "blue", "black"));
+    menuButtons.push(new Button(canvas.width / 16 * 15, canvas.height / 2.98, canvas.width / 12, canvas.height / 14, "Išeiti", canvas.height / 30, "blue", "black"));
+    xb.push(new Button(canvas.width / 4 * 3.45, canvas.height / 20, canvas.height / 14, canvas.height / 14, "x", canvas.height / 10, "red", "white"));
     player.push(new Player(canvas.width / 2 * 0.9, canvas.height * 0.8, canvas.width / 9, canvas.width / 9, "black"));
     tr.push(new transition(0, -20, canvas.width, 20, "black"));
     tr.push(new transition(-20, 0, 20, canvas.height, "black"));

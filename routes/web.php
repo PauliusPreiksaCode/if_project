@@ -32,3 +32,6 @@ Route::get('/n', function () {
 Route::get('/a', function () {
     return view('a');
 });
+Route::get('/kel', function () {
+    return view('kel');
+});

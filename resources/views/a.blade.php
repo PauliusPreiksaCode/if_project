@@ -16,10 +16,10 @@
         <a href="http://127.0.0.1:8000/" class = "btn btn-info" role = "button">Pagrindinis</a>
     </div>
     <div class="w3-show-inline-block" style="padding-top: 30px">
-        <a href="http://127.0.0.1:8000/game" class = "btn btn-info" role = "button">Zaidimas 1</a>
+        <a href="http://127.0.0.1:8000/game" class = "btn btn-info" role = "button">Startuolis</a>
     </div>
     <div class="w3-show-inline-block" style="padding-top: 30px">
-        <a href="http://127.0.0.1:8000/game" class = "btn btn-info" role = "button">Zaidimas 2</a>
+        <a href="http://127.0.0.1:8000/kel" class = "btn btn-info" role = "button">Keliautojas</a>
     </div>
     <div class="w3-show-inline-block" style="padding-top: 30px">
         <a href="http://127.0.0.1:8000/game" class = "btn btn-info" role = "button">Zaidimas 3</a>

@@ -345,9 +345,10 @@ function win() {
     xb[0].pressed = true;
 }
 window.onload = function () {
-    canvas = document.getElementById('canvas');
+    canvas = document.getElementById("canvas");
     canvas.width = window.innerWidth * 0.8;
     canvas.height = canvas.width * 9 / 16;
+    //@ ts-ignore
     ctx = canvas.getContext("2d");
     draw_array.push(new Button(canvas.width / 2, canvas.height / 4, canvas.width / 5 * 3, canvas.height / 7 * 2, "Naujas žaidimas", 45, "red", "white"));
     draw_array.push(new Button(canvas.width / 2, canvas.height / 4 * 3, canvas.width / 5 * 3, canvas.height / 7 * 2, "Testi", 50, "blue", "white"));

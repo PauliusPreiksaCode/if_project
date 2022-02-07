@@ -18,3 +18,4 @@ mix.js('resources/js/app.js', 'public/js')
 
 mix.ts('resources/js/startuolis.ts', 'public/js/startuolis.js');
 mix.ts('resources/js/kel.ts', 'public/js/kel.js');
+

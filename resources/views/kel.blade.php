@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="/js/kel.js"></script>
+    <scripp src="/js/kel.js"></scripp>
 
 </head>
 <body>
@@ -59,8 +59,6 @@
     </div>
     <canvas id="canvas" width="1280px" height="720px"></canvas>
     <script>
-        "use strict";
-        exports.__esModule = true;
         var canvas;
         var ctx;
         var draw_array = new Array();
@@ -411,7 +409,7 @@
             canvas = document.getElementById("canvas");
             canvas.width = window.innerWidth * 0.8;
             canvas.height = canvas.width * 9 / 16;
-            // @ts-ignore
+            //@ ts-ignore
             ctx = canvas.getContext("2d");
             draw_array.push(new Button(canvas.width / 2, canvas.height / 4, canvas.width / 5 * 3, canvas.height / 7 * 2, "Naujas žaidimas", 45, "red", "white"));
             draw_array.push(new Button(canvas.width / 2, canvas.height / 4 * 3, canvas.width / 5 * 3, canvas.height / 7 * 2, "Tęsti", 50, "blue", "white"));
@@ -432,6 +430,8 @@
             mapEl.push(new romb(canvas.height * 1.105, canvas.height / 25));
             gameLoop();
         };
+        //# sourceMappingURL=app.js.map
+
     </script>
 </div>
 <div class="footer"></div>

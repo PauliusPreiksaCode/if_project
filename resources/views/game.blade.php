@@ -62,6 +62,13 @@
                   <p><br>Žaidimo temą galima keisti, čia tik viena iš sugalvotų.</p>
               </div>
               <canvas id="game" width="1280px" height="720px"></canvas>
+              <img src="/pictures-videos/testGif.gif" id="testGif" style="display: none">
+              <img src="/pictures-videos/testGifFrames/frame_0_delay-0.1s.gif" id="testGif1" style="display: none">
+              <img src="/pictures-videos/testGifFrames/frame_1_delay-0.1s.gif" id="testGif2" style="display: none">
+              <img src="/pictures-videos/testGifFrames/frame_2_delay-0.1s.gif" id="testGif3" style="display: none">
+              <img src="/pictures-videos/testGifFrames/frame_3_delay-0.1s.gif" id="testGif4" style="display: none">
+
+
               <script src="/js/startuolis.js"></script>
           </div>
       <div class="footer"></div>

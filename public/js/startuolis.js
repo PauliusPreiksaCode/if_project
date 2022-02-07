@@ -228,6 +228,20 @@ function beenClicked(shapeName) {
   return false;
 }
 
+var img1 = new Image();
+var img2 = new Image();
+var img3 = new Image();
+
+function drawImg(src) {
+  var img = new Image();
+  img.src = src;
+  ctx.drawImage(img, (640 - img.width / 2) * multX, (360 - img.height / 2) * multY, img.width * multX, img.height * multY);
+}
+
+function drawImg1(img) {
+  ctx.drawImage(img, (640 - img.width / 2) * multX, (360 - img.height / 2) * multY, img.width * multX, img.height * multY);
+}
+
 var StartingShapes = new Array();
 var MainShapes = new Array();
 var GameEndShapes = new Array();
@@ -238,7 +252,10 @@ var multX;
 var multY;
 
 function gameLoop() {
-  requestAnimationFrame(gameLoop);
+  setInterval(function () {
+    requestAnimationFrame(gameLoop);
+  }, 2000); //requestAnimationFrame(gameLoop);
+
   ctx.fillStyle = "white";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   var shape;
@@ -251,6 +268,78 @@ function gameLoop() {
   }
 
   if (startGame) {
+    /*
+    for(var i:number = 1; i < 5; i++)
+    {
+          var img = new Image();
+        img.src = "/pictures-videos/testGifFrames/frame_"+ i.toString(10) + "_delay-0.1s.gif";
+        console.log(img.src);
+        img.onload = function (){
+            ctx.drawImage(img, (640 - img.width/2) * multX, (360 - img.height/2) * multY);
+        }
+        var id: string = "testGif2";// + i.toString(10);
+        img = <HTMLImageElement>document.getElementById("testGif1");
+        img.onload = function () {
+            ctx.drawImage(img, (640 - img.width/2) * multX, (360 - img.height/2) * multY);
+            console.log(img.src);
+        }
+    }*/
+
+    /*
+    function allImages() {
+        for (let index = 0; index < 4; index++) {
+            let imageObj = new Image();
+            imageObj.name = "display-"+index;
+              imageObj.addEventListener('load', function() {
+                console.log("loaded : " + imageObj.name)
+                ctx.drawImage(imageObj, (640 - imageObj.width / 2) * multX, (360 - imageObj.height / 2) * multY);
+            }, false);
+              imageObj.src = "/pictures-videos/testGifFrames/frame_" + index.toString() + "_delay-0.1s.gif";
+        }
+    }
+    //allImages();
+      function  copyImage(){
+        let imageObj = new Image();
+        imageObj.src = "/pictures-videos/testGifFrames/frame_" + "1" + "_delay-0.1s.gif";
+        imageObj.addEventListener('load', function() {
+            ctx.drawImage(imageObj, (640 - imageObj.width / 2) * multX, (360 - imageObj.height / 2) * multY);
+        }, false);
+    }
+      setTimeout(() => {
+        copyImage();
+    }, 300);*/
+    //var img = new Image();
+    //img.src = "/pictures-videos/testGifFrames/frame_0_delay-0.1s.gif";
+
+    /*setTimeout(() => {
+        //drawImg("/pictures-videos/testGifFrames/frame_0_delay-0.1s.gif");
+        drawImg1(img2);
+    }, 0);*/
+    setTimeout(function () {
+      //drawImg("/pictures-videos/testGifFrames/frame_1_delay-0.1s.gif");
+      drawImg1(img1);
+    }, 0);
+    /*
+                setTimeout(() => {
+                    drawImg1(img2);
+                    //drawImg("/pictures-videos/testGifFrames/frame_2_delay-0.1s.gif");
+                }, 1000);*/
+
+    setTimeout(function () {
+      drawImg1(img3); //drawImg("/pictures-videos/testGifFrames/frame_3_delay-0.1s.gif");
+    }, 1000);
+    /*
+            var img = new Image();
+              //public draw = (): void =>{
+            function drawGif () {
+                for(var k:number = 0; k < 4; k++) {
+                    img.src = "/pictures-videos/testGifFrames/frame_" + k.toString(10) + "_delay-0.1s.gif";
+                    ctx.drawImage(img, (640 - img.width / 2) * multX, (360 - img.height / 2) * multY);
+                }
+            }*/
+    //window.requestAnimationFrame(drawGif);
+    //setTimeout(drawGif, 1000);
+
     canvas.addEventListener("mousemove", mouseOver, false);
     var count = 0;
 
@@ -295,6 +384,9 @@ window.onload = function () {
   MainShapes.push(new Rectangle("6", 1140 * multX, 570 * multY, 100 * multX, 100 * multY, "black", 3, "", "white", 1, true));
   GameEndShapes.push(new Rectangle("", 640 * multX, 50 * multY, 0, 0, "white", 0, "Žaidimo pabaiga", "black", 64));
   GameEndShapes.push(new Rectangle("", 640 * multX, 100 * multY, 0, 0, "white", 0, "Jūsų surinkti taškai: XXXX", "black", 32));
+  img1.src = "/pictures-videos/testGifFrames/frame_1_delay-0.1s.jpg";
+  img2.src = "/pictures-videos/testGifFrames/frame_2_delay-0.1s.jpg";
+  img3.src = "/pictures-videos/testGifFrames/frame_3_delay-0.1s.jpg";
   gameLoop();
 };
 })();

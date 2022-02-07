@@ -1,3 +1,5 @@
+"use strict";
+exports.__esModule = true;
 var canvas;
 var ctx;
 var draw_array = new Array();
@@ -348,7 +350,7 @@ window.onload = function () {
     canvas = document.getElementById("canvas");
     canvas.width = window.innerWidth * 0.8;
     canvas.height = canvas.width * 9 / 16;
-    //@ ts-ignore
+    // @ts-ignore
     ctx = canvas.getContext("2d");
     draw_array.push(new Button(canvas.width / 2, canvas.height / 4, canvas.width / 5 * 3, canvas.height / 7 * 2, "Naujas žaidimas", 45, "red", "white"));
     draw_array.push(new Button(canvas.width / 2, canvas.height / 4 * 3, canvas.width / 5 * 3, canvas.height / 7 * 2, "Tęsti", 50, "blue", "white"));
@@ -369,4 +371,3 @@ window.onload = function () {
     mapEl.push(new romb(canvas.height * 1.105, canvas.height / 25));
     gameLoop();
 };
-//# sourceMappingURL=app.js.map

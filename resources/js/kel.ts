@@ -454,11 +454,10 @@ window.onload = () => {
     tr.push(new transition(-20, 0, 20, canvas.height, "black"));
     tr.push(new transition(0, canvas.height, canvas.width, 20, "black"));
     tr.push(new transition(canvas.width, 0, 20, canvas.height, "black"));
-    mapEl.push(new line(canvas.width/2 * 0.68, canvas.height * 0.85, canvas.width/2 * 0.685, canvas.height * 0.85 - canvas.height / 7));
-    mapEl.push(new line(canvas.width/2 * 0.685, canvas.height * 0.845, canvas.width/2 * 0.685 + canvas.height / 7, canvas.height * 0.845));
+    mapEl.push(new line(canvas.width / 2 * 0.68, canvas.height * 0.85, canvas.width / 2 * 0.685, canvas.height * 0.85 - canvas.height / 7));
+    mapEl.push(new line(canvas.width / 2 * 0.685, canvas.height * 0.845, canvas.width / 2 * 0.685 + canvas.height / 7, canvas.height * 0.845));
     mapEl.push(new romb(canvas.height, canvas.height / 7));
-    mapEl.push(new romb(canvas.height * 0.9, canvas. height /25));
-    mapEl.push(new romb(canvas.height * 1.105, canvas.height /25));
-
+    mapEl.push(new romb(canvas.height * 0.9, canvas.height / 25));
+    mapEl.push(new romb(canvas.height * 1.105, canvas.height / 25));
     gameLoop();
 }

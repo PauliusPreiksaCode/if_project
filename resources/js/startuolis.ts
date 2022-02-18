@@ -1,5 +1,6 @@
 import {List} from "postcss/lib/list";
 import * as Console from "console";
+import Phaser from "phaser";
 
 var canvas: HTMLCanvasElement;
 var ctx: CanvasRenderingContext2D;
@@ -237,18 +238,46 @@ var mouseOverChoice: boolean = false;
 var multX: number;
 var multY: number;
 
-var img1 = new Image();
-var img2 = new Image();
-var img3 = new Image();
 
 
+var config = {
+    type: Phaser.AUTO,
+    //width: 1280,
+    //height: 720,
+    scene: {
+        preload: preload,
+        create: create,
+        update: update
+    }
 
-function gameLoop()
+};
+
+var game = new Phaser.Game(config);
+
+function preload ()
 {
+    // @ts-ignore
+    this.load.spritesheet('dude',
+        '/pictures-videos/testGifFrames/spritesWave.png',
+        { frameWidth: 32, frameHeight: 48 }
+    );
+
+    // @ts-ignore
+    this.load.image('bomb', '/pictures-videos/testGifFrames/frame_0_delay-0.1s.jpg');
+}
+
+
+
+function update ()
+{
+    /*
     setInterval(() => {
-        requestAnimationFrame(gameLoop);
-    }, 2000);
+        requestAnimationFrame(update);
+    }, 2000);*/
     //requestAnimationFrame(gameLoop);
+
+    // @ts-ignore
+    this.add.sprite(0, 0, 'dude').setOrigin(0, 0);
 
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -263,25 +292,6 @@ function gameLoop()
     }
 
     if(startGame) {
-
-      /*  setTimeout(() => {
-            //drawImg("/pictures-videos/testGifFrames/frame_0_delay-0.1s.gif");
-            drawImg1(img2);
-        }, 0);*/
-
-        setTimeout(() => {
-            //drawImg("/pictures-videos/testGifFrames/frame_1_delay-0.1s.gif");
-            drawImg1(img1);
-        }, 0);
-
-      /*  setTimeout(() => {
-            drawImg1(img2);
-            //drawImg("/pictures-videos/testGifFrames/frame_2_delay-0.1s.gif");
-        }, 1000);*/
-        setTimeout(() => {
-            drawImg1(img3);
-            //drawImg("/pictures-videos/testGifFrames/frame_3_delay-0.1s.gif");
-        }, 1000);
 
 
         canvas.addEventListener("mousemove", mouseOver, false);
@@ -307,7 +317,8 @@ function gameLoop()
     }
 }
 
-window.onload = () => {
+function create ()
+{
     canvas = <HTMLCanvasElement>document.getElementById("game");
 
     canvas.width = window.innerWidth * 0.8; // 80% of the window
@@ -333,17 +344,45 @@ window.onload = () => {
     GameEndShapes.push(new Rectangle("", 640 * multX, 50 * multY, 0, 0, "white", 0, "Žaidimo pabaiga", "black", 64));
     GameEndShapes.push(new Rectangle("", 640 * multX, 100 * multY, 0, 0, "white", 0, "Jūsų surinkti taškai: XXXX", "black", 32));
 
+
+    // @ts-ignore
+   // this.add.Image(0, 0, 'bomb');
+
+
+
+    //update();
+}
+
+/*
     img1.src = "/pictures-videos/testGifFrames/frame_1_delay-0.1s.jpg";
     img2.src = "/pictures-videos/testGifFrames/frame_2_delay-0.1s.jpg";
     img3.src = "/pictures-videos/testGifFrames/frame_3_delay-0.1s.jpg";
 
+    var img1 = new Image();
+var img2 = new Image();
+var img3 = new Image();
 
-    gameLoop();
-}
 
-import Phaser from 'phaser'
-new Phaser.Game();
+      /*  setTimeout(() => {
+            //drawImg("/pictures-videos/testGifFrames/frame_0_delay-0.1s.gif");
+            drawImg1(img2);
+        }, 0);
 
+setTimeout(() => {
+    //drawImg("/pictures-videos/testGifFrames/frame_1_delay-0.1s.gif");
+    drawImg1(img1);
+}, 0);
+
+/*  setTimeout(() => {
+      drawImg1(img2);
+      //drawImg("/pictures-videos/testGifFrames/frame_2_delay-0.1s.gif");
+  }, 1000);
+
+ *//*
+setTimeout(() => {
+    drawImg1(img3);
+    //drawImg("/pictures-videos/testGifFrames/frame_3_delay-0.1s.gif");
+}, 1000);*/
 
 
 

@@ -72,6 +72,5 @@
               <script src="/js/startuolis.js"></script>
           </div>
       <div class="footer"></div>
-
 </body>
 </html>

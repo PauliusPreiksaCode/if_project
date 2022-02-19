@@ -16,5 +16,7 @@ mix.js('resources/js/app.js', 'public/js')
         //
     ]);
 
-mix.ts('resources/js/startuolis.ts', 'public/js/startuolis.js');
+//mix.ts('resources/js/startuolis/mainGame.ts', 'public/js/mainGame.js');
+//mix.ts('resources/js/startuolis/startuolis.ts', 'public/js/startuolis.js');
 mix.ts('resources/js/kel.ts', 'public/js/kel.js');
+mix.ts('resources/js/startuolis/startuolis.ts', 'public/js/startuolis.js');

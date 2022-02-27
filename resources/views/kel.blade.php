@@ -66,14 +66,82 @@
         var xb = new Array();
         var player = new Array();
         var tr = new Array();
+        var inf = new Array();
         var mapEl = new Array();
         var inv = new Array();
+        var qtext = new Array();
+        var qestion = new Array();
+        var test = new Array();
+        var q = 0;
         var img = new Image();
         window.addEventListener("keydown", function (e) {
             if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(e.code) > -1) {
                 e.preventDefault();
             }
         }, false);
+        var question = /** @class */ (function () {
+            function question(text, text1, text2, text3, answer) {
+                var _this = this;
+                this.draw = function () {
+                    qtext[0].drav();
+                    for (var i = 0; i < 3; i++) {
+                        qestion[i].draw();
+                    }
+                };
+                this.chosen = function () {
+                    if (qestion[_this.answer].pressed) {
+                        return 0;
+                    }
+                    for (var i = 0; i < 3; i++) {
+                        if (qestion[i].pressed) {
+                            return 1;
+                        }
+                    }
+                    return 2;
+                };
+                this.text = text;
+                this.text1 = text1;
+                this.text2 = text2;
+                this.text3 = text3;
+                this.answer = answer;
+                qtext.push(new textBox(canvas.width / 6 * 2.5, canvas.height / 7.5, canvas.width / 4 * 3.2, canvas.height * 0.18, text, canvas.height / 28, "blue", "white"));
+                qestion.push(new Button(canvas.width / 2.7, canvas.height / 7.5 + canvas.height * 0.2, canvas.width / 4 * 2.8, canvas.height * 0.18, text1, canvas.height / 28, "blue", "white"));
+                qestion.push(new Button(canvas.width / 2.7, canvas.height / 7.5 + canvas.height * 0.4, canvas.width / 4 * 2.8, canvas.height * 0.18, text2, canvas.height / 28, "blue", "white"));
+                qestion.push(new Button(canvas.width / 2.7, canvas.height / 7.5 + canvas.height * 0.6, canvas.width / 4 * 2.8, canvas.height * 0.18, text3, canvas.height / 28, "blue", "white"));
+            }
+            return question;
+        }());
+        var textBox = /** @class */ (function () {
+            function textBox(x, y, width, height, text, fontSize, color, textColor) {
+                var _this = this;
+                if (fontSize === void 0) { fontSize = 15; }
+                this.drav = function () {
+                    ctx.save();
+                    ctx.fillStyle = _this.color;
+                    ctx.fillRect(_this.x - _this.midx, _this.y - _this.midy, _this.width, _this.height);
+                    ctx.restore();
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.textAlign = "center";
+                    ctx.textBaseline = "middle";
+                    ctx.fillStyle = _this.textColor;
+                    ctx.font = _this.fontSize + "px Verdana";
+                    ctx.fillText(_this.text, _this.x, _this.y);
+                    ctx.restore();
+                };
+                this.x = x;
+                this.y = y;
+                this.width = width;
+                this.height = height;
+                this.color = color;
+                this.midx = width / 2;
+                this.midy = height / 2;
+                this.text = text;
+                this.fontSize = fontSize;
+                this.textColor = textColor;
+            }
+            return textBox;
+        }());
         var info = /** @class */ (function () {
             function info(x, y, width, height, text, fontSize, color, textColor) {
                 var _this = this;
@@ -312,7 +380,7 @@
                 }
                 for (var i = 0; i < inv.length; i++) {
                     inv[i].reset();
-                    tr[4 + i].color = "black";
+                    inf[i].color = "black";
                 }
                 screen0();
             }
@@ -322,33 +390,35 @@
             }*/
         }
         function playerSpawn() {
-            if (tr[0].isT == true) {
-                tr[0].isT = false;
-                player[0].y = canvas.height * 0.8;
-                var p = player[0];
-                p.draw();
-            }
-            if (tr[1].isT == true) {
-                player[0].x = canvas.width * 0.88;
-                var p = player[0];
-                p.draw();
-                tr[1].isT = false;
-            }
-            if (tr[2].isT == true) {
-                player[0].y = 6;
-                var p = player[0];
-                p.draw();
-                tr[2].isT = false;
-            }
-            if (tr[3].isT == true) {
-                player[0].x = 6;
-                var p = player[0];
-                p.draw();
-                tr[3].isT = false;
-            }
-            else {
-                var p = player[0];
-                p.draw();
+            if (q == 0) {
+                if (tr[0].isT == true) {
+                    tr[0].isT = false;
+                    player[0].y = canvas.height * 0.8;
+                    var p = player[0];
+                    p.draw();
+                }
+                if (tr[1].isT == true) {
+                    player[0].x = canvas.width * 0.88;
+                    var p = player[0];
+                    p.draw();
+                    tr[1].isT = false;
+                }
+                if (tr[2].isT == true) {
+                    player[0].y = 6;
+                    var p = player[0];
+                    p.draw();
+                    tr[2].isT = false;
+                }
+                if (tr[3].isT == true) {
+                    player[0].x = 6;
+                    var p = player[0];
+                    p.draw();
+                    tr[3].isT = false;
+                }
+                else {
+                    var p = player[0];
+                    p.draw();
+                }
             }
             return;
         }
@@ -399,17 +469,17 @@
             mapEl[3].color = "yellow";
             ctx.fillStyle = "blue";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            tr[4].draw();
-            if (tr[4].transition(player[0].x, player[0].y, player[0].x + player[0].width, player[0].y + player[0].height)) {
+            inf[0].draw();
+            if (inf[0].transition(player[0].x, player[0].y, player[0].x + player[0].width, player[0].y + player[0].height)) {
                 inv[1].gotten = true;
-                tr[4].color = "grey";
-                tr[4].isT = false;
+                inf[0].color = "grey";
+                inf[0].isT = false;
             }
-            tr[6].draw();
-            if (tr[6].transition(player[0].x, player[0].y, player[0].x + player[0].width, player[0].y + player[0].height)) {
+            inf[2].draw();
+            if (inf[2].transition(player[0].x, player[0].y, player[0].x + player[0].width, player[0].y + player[0].height)) {
                 inv[2].gotten = true;
-                tr[6].color = "grey";
-                tr[6].isT = false;
+                inf[2].color = "grey";
+                inf[2].isT = false;
             }
             if (menuButtons[3].pressed == true) {
                 cancelAnimationFrame(s1);
@@ -428,20 +498,19 @@
             mapEl[4].color = "yellow";
             ctx.fillStyle = "red";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            tr[5].draw();
-            if (tr[5].transition(player[0].x, player[0].y, player[0].x + player[0].width, player[0].y + player[0].height)) {
+            inf[1].draw();
+            if (inf[1].transition(player[0].x, player[0].y, player[0].x + player[0].width, player[0].y + player[0].height)) {
                 inv[0].gotten = true;
-                tr[5].color = "grey";
-                tr[5].isT = false;
+                inf[1].color = "grey";
+                inf[1].isT = false;
             }
             if (menuButtons[3].pressed == true) {
                 cancelAnimationFrame(s2);
                 cancelAnimationFrame(pl);
             }
             if (tr[0].transition(player[0].x, player[0].y, player[0].x + player[0].width, player[0].y + player[0].height)) {
-                cancelAnimationFrame(s2);
-                cancelAnimationFrame(pl);
-                win();
+                q = 1;
+                ask(0);
             }
             if (tr[1].transition(player[0].x, player[0].y, player[0].x + player[0].width, player[0].y + player[0].height)) {
                 cancelAnimationFrame(s2);
@@ -492,6 +561,16 @@
                 displayImg(pic, canvas.width / 6 * 2.5, canvas.height / 2, canvas.width / 4 * 3.2, canvas.height * 0.8);
             }
         }
+        function ask(i) {
+            xb[0].pressed = true;
+            test[i].draw();
+            if (test[i].chosen() == 0) {
+                win();
+            }
+            if (test[i].chosen() == 1) {
+                q = 0;
+            }
+        }
         function displayImg(pic, x, y, width, height) {
             img.src = pic;
             x = x - width / 2;
@@ -538,7 +617,6 @@
             menuButtons.push(new Button(canvas.width / 16 * 15, canvas.height / 6.2, canvas.width / 12, canvas.height / 14, "Daiktai", canvas.height / 30, "blue", "black"));
             menuButtons.push(new Button(canvas.width / 16 * 15, canvas.height / 4, canvas.width / 12, canvas.height / 14, "Žemėlapis", canvas.height / 40, "blue", "black"));
             menuButtons.push(new Button(canvas.width / 16 * 15, canvas.height / 2.98, canvas.width / 12, canvas.height / 14, "Išeiti", canvas.height / 30, "blue", "black"));
-            xb.push(new Button(canvas.width / 4 * 3.45, canvas.height / 20, canvas.height / 14, canvas.height / 14, "x", canvas.height / 10, "red", "white"));
             xb.push(new Button(canvas.width / 4 * 3.45, canvas.height / 20, canvas.height / 14, canvas.height / 14, "x", 50, "red", "white"));
             player.push(new Player(canvas.width / 2 * 0.9, canvas.height * 0.8, canvas.width / 9, canvas.width / 9, "black"));
             tr.push(new transition(0, -20, canvas.width, 20, "black"));
@@ -550,18 +628,18 @@
             mapEl.push(new romb(canvas.height, canvas.height / 7));
             mapEl.push(new romb(canvas.height * 0.9, canvas.height / 25));
             mapEl.push(new romb(canvas.height * 1.105, canvas.height / 25));
-            tr.push(new transition(canvas.width / 2, canvas.height / 2, canvas.height / 7, canvas.height / 7, "black"));
-            tr.push(new transition(canvas.width / 5, canvas.height / 5, canvas.height / 7, canvas.height / 7, "black"));
-            tr.push(new transition(canvas.width / 3, canvas.height / 5, canvas.height / 7, canvas.height / 7, "black"));
+            inf.push(new transition(canvas.width / 2, canvas.height / 2, canvas.height / 7, canvas.height / 7, "black"));
+            inf.push(new transition(canvas.width / 5, canvas.height / 5, canvas.height / 7, canvas.height / 7, "black"));
+            inf.push(new transition(canvas.width / 3, canvas.height / 5, canvas.height / 7, canvas.height / 7, "black"));
             inv.push(new info(canvas.width / 6 * 2.5, canvas.height / 7.5, canvas.width / 4 * 3.2, canvas.height * 0.18, "thfhdrv  vrt drt y yr  rtbftfy fr td rtd brtdbrty b ytr ty", canvas.height / 28, "blue", "white"));
-            inv.push(new info(canvas.width / 6 * 2.5, canvas.height / 7.5 + canvas.height * 0.2, canvas.width / 4 * 3.2, canvas.height * 0.18, "thfhdrv  vrt drt y yr  rtbftfy fr td rtd brtdbrty b ytr ty", canvas.height / 28, "blue", "white"));
+            inv.push(new info(canvas.width / 6 * 2.5, canvas.height / 7.5 + canvas.height * 0.2, canvas.width / 4 * 3.2, canvas.height * 0.18, "q1 - 3", canvas.height / 28, "blue", "white"));
             inv.push(new info(canvas.width / 6 * 2.5, canvas.height / 7.5 + canvas.height * 0.4, canvas.width / 4 * 3.2, canvas.height * 0.18, "thfhdrv  vrt drt y yr  rtbftfy fr td rtd brtdbrty b ytr ty", canvas.height / 28, "blue", "white"));
+            test.push(new question("q1", "a1", "a2", "a3", 2));
             gameLoop();
         };
         //# sourceMappingURL=app.js.map
-
-    </script>
-</div>
+</script>
+        </div>
 <div class="footer"></div>
 
 </body>

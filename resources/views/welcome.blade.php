@@ -56,14 +56,12 @@
                     <tr>
                         <th class="game-name">Startuolis</th>
                         <th class="game-name">Keliautojas</th>
-                        <th class="game-name">Žaidimas 3</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td data-label="Startuolis"> <a href="http://127.0.0.1:8000/game"><img class="game-photo" src="/pictures-videos/blank.jpg"></a></td>
                         <td data-label="Keliautojas"> <a href="http://127.0.0.1:8000/kel"><img class="game-photo" src="/pictures-videos/blank.jpg"></a></td>
-                        <td data-label="Žaidimas 3"> <a href="http://127.0.0.1:8000/game"><img class="game-photo" src="/pictures-videos/blank.jpg"></a></td>
                     </tr>
                 </tbody>
             </table>

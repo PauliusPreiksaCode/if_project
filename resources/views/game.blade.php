@@ -61,9 +61,8 @@
         <p>Reikės grafikos elementų.</p>
         <p><br>Žaidimo temą galima keisti, čia tik viena iš sugalvotų.</p>
     </div>
-    <canvas id="game" width="1280px" height="720px"></canvas>
-
-    <script src="/js/startuolis.js"></script>
+    <div id="game"></div>
+    <script src="/js/MainTS.js"></script>
 </div>
 <div class="footer"></div>
 </body>

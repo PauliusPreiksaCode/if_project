@@ -1,6 +1,8 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/kel.js": "/js/kel.js",
-    "/js/startuolis.js": "/js/startuolis.js",
+    "/js/MainTS.js": "/js/MainTS.js",
+    "/js/MainGame.js": "/js/MainGame.js",
+    "/js/GameStart.js": "/js/GameStart.js",
     "/css/app.css": "/css/app.css"
 }

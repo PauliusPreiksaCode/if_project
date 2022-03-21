@@ -35,3 +35,5 @@ Route::get('/a', function () {
 Route::get('/kel', function () {
     return view('kel');
 });
+Route::get('/button', [\App\Http\Controllers\startuolis_button_controller::class, 'show']);
+

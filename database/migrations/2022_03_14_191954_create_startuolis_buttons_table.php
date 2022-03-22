@@ -14,7 +14,11 @@ class CreateStartuolisButtonsTable extends Migration
     public function up()
     {
         Schema::create('startuolis_buttons', function (Blueprint $table) {
-            $table->id();
+            $table->id('id');
+            $table->string("description");
+            $table->string("picture_path");
+            $table->string("button_name");
+            $table->boolean("been_clicked");
             $table->timestamps();
         });
     }

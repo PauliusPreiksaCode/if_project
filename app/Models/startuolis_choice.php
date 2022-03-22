@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class startulis_choice extends Model
 {
     use HasFactory;
+
+
 }

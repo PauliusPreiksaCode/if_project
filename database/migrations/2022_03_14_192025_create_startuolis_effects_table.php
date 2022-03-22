@@ -14,7 +14,10 @@ class CreateStartuolisEffectsTable extends Migration
     public function up()
     {
         Schema::create('startuolis_effects', function (Blueprint $table) {
-            $table->id();
+            $table->id("Effect_id");
+            $table->string("path_to_animation_files");
+            $table->boolean("Endless_duration");
+
             $table->timestamps();
         });
     }

@@ -15,8 +15,8 @@ class CreateStartuolisChoicesTable extends Migration
     {
         Schema::create('startuolis_choices', function (Blueprint $table) {
             $table->id();
-            //$table->foreignId('button_id')->references('id')->on('startuolis_buttons');
-            $table->id('button_id');
+            $table->foreignId('button_id')->references('id')->on('startuolis_buttons');
+            //$table->id('button_id');
             $table->string('name');
             $table->integer('level');
             $table->timestamps();

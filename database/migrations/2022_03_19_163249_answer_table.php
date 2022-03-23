@@ -16,7 +16,7 @@ class AnswerTable extends Migration
         Schema::create('answer', function (Blueprint $table) {
             $table->id();
             $table->string('text');
-            $table->foreignId('question_id');
+            $table->foreignId('question_id')->references('id')->on('question');
             $table->boolean('is_right');
         });
     }

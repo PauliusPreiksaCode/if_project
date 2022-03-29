@@ -36,5 +36,8 @@ Route::get('/kel', function () {
     return view('kel');
 });
 Route::get('/button', [\App\Http\Controllers\startuolis_button_controller::class, 'show']);
-
+Route::get('/question', [\App\Http\Controllers\question::class, 'show']);
+Route::get('/answer', [\App\Http\Controllers\answer::class, 'show']);
+Route::get('/info', [\App\Http\Controllers\info::class, 'show']);
+Route::get('/picture', [\App\Http\Controllers\picture::class, 'show']);
 

@@ -17,7 +17,7 @@ class InfoTable extends Migration
             $table->id();
             $table->string('text');
             $table->boolean('gotten');
-            $table->foreignId('img_id');
+            $table->foreignId('img_id')->references('id')->on('picture');
         });
     }
 

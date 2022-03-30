@@ -56,6 +56,7 @@
 <div class="page">
     <div class="gameInfo">
         <p>RPG žaidimas, kur keliauji po dirbtinį pasaulį ieškodamas žinių.</p>
+        {{ $answers[0]->id }}
     </div>
     <canvas id="canvas" width="1280px" height="720px"></canvas>
     <script>
